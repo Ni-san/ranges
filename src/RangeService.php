@@ -6,15 +6,35 @@ class RangeService
 {
     private $items;
 
+    /**
+     * @param array $items example:
+     * [
+     *     [
+     *         start => 1,
+     *         end => 5,
+     *     ],
+     *     [
+     *         start => 5,
+     *         end => 7,
+     *     ],
+     *     [
+     *         start => 5,
+     *         end => 10,
+     *     ],
+     * ]
+     */
     public function __construct(array $items)
     {
         $this->items = $items;
     }
 
-
+    /**
+     * @param int $start
+     * @param int $end
+     * @return int - max number of intersected items during period $start to $end
+     */
     public function calculate(int $start, int $end): int
     {
-
         $map = [];
         foreach ($this->items as $item) {
             $map[$item['start']] = $map[$item['start']] ?? ['start' => 0, 'end' => 0];
